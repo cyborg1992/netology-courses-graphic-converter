@@ -21,7 +21,7 @@ public class Converter implements TextGraphicsConverter {
         int width = img.getWidth();
         int height = img.getHeight();
 
-        double ratio = (double) width / height;
+        double ratio = width > height ? (double) width / height : (double) height / width;
 
         // если текущее соотношение больше максимального, то выбрасываем исключение
         if (ratio > maxRatio) {
