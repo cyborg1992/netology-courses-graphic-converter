@@ -47,12 +47,11 @@ public class Converter implements TextGraphicsConverter {
         // Копируем содержимое суженой картинки на новую:
         graphics.drawImage(scaledImage, 0, 0, null);
 
+        // сохранение получившегося изображения
         // ImageIO.write(bwImg, "png", new File("out.png"));
 
 
-        // Теперь давайте пройдёмся по пикселям нашего изображения.
-        // Если для рисования мы просили у картинки .createGraphics(),
-        // то для прохода по пикселям нам нужен будет этот инструмент:
+        // Пройдёмся по пикселям нашего изображения
         WritableRaster bwRaster = bwImg.getRaster();
 
         int[] rgb = new int[3];
@@ -69,8 +68,7 @@ public class Converter implements TextGraphicsConverter {
         for (int h = 0; h < newHeight; h++) {
             for (int w = 0; w < newWidth; w++) {
                 char c = charByPixel[h][w];
-                sb.append(c);
-                sb.append(c);
+                sb.append(c).append(c);
             }
             sb.append('\n');
         }

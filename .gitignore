@@ -3,3 +3,4 @@ out/
 *.iml
 target/
 /out.png
+!/assets/img.txt

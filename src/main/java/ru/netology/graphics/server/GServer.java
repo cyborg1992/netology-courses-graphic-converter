@@ -27,8 +27,8 @@ public class GServer {
         this.converter.setMaxRatio(4);
 
         server = HttpServer.create(new InetSocketAddress("localhost", PORT), 0);
-        server.createContext("/", this::serveHtml);
-        server.createContext("/convert", this::serveConvertion);
+        server.createContext("/", this::serverHtml);
+        server.createContext("/convert", this::serverConvertion);
     }
 
     public void start() {
@@ -37,7 +37,7 @@ public class GServer {
         server.start();
     }
 
-    protected void serveHtml(HttpExchange h) throws IOException {
+    protected void serverHtml(HttpExchange h) throws IOException {
         System.out.println("Serving html..");
         var htmlPath = Path.of("assets/index.html");
         var htmlContent = Files.readString(htmlPath);
@@ -50,7 +50,7 @@ public class GServer {
         h.close();
     }
 
-    protected void serveConvertion(HttpExchange h) throws IOException {
+    protected void serverConvertion(HttpExchange h) throws IOException {
         System.out.println("Convert request..");
         var url = new BufferedReader(new InputStreamReader(h.getRequestBody())).readLine();
         try {
